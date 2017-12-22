@@ -12,10 +12,13 @@ class InteractiveDataProfile extends CI_Model {
 	public function GetProfile($IdProfile){
 		$this->mongodb->select();
 	}
-	public function InsertProfile($){
+	public function GetProfile($Email,$Password){
+		$this->mongodb->select();
+	}
+	public function InsertProfile($name,$email,$password,$birth,$hometown,$highschool,$unversity){
 
 	}
-	public function UdateProfile($IdProfile,){
+	public function UdateProfile($IdProfile){
 		
 	}
 }
