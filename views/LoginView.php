@@ -52,12 +52,12 @@
 					</span>
 				</div>
 			</div>
-			<form class="form_auth_logIn">
+			<form class="form_auth_logIn" action="Login/CheckInformation" method="post" enctype="multidata/form-data>
 				<div class="form-group">
-					<input type="text" name="USER_LOGIN" class="form-control" placeholder="E-mail">
+					<input type="text" name="Email" class="form-control" placeholder="E-mail">
 				</div>
 				<div class="form-group">
-					<input type="password" name="USER_PASSWORD" class="form-control" placeholder="Mật khẩu">
+					<input type="password" name="Password" class="form-control" placeholder="Mật khẩu">
 				</div>
 				<div class="form_submit">
 					<input class="btn" type="submit" value="ĐĂNG NHẬP">
