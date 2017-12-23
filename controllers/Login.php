@@ -22,15 +22,15 @@ class Login extends CI_Controller {
         $this->load->view('LoginView', $data);
     }
 
-    public function CheckInformation() {
+    public function CheckInformation() {  
         $this->form_validation->set_rules('Email', 'Email', 'required|valid_email'); // Email is requried
         $this->form_validation->set_rules('Password', 'Password', 'required'); // Password required
         if ($this->form_validation->run() == FALSE) {
             $this->index();
         } else {
-            $email_input = $this->input->post('Email');
-            $password_input = $this->input->post('Password');
-            $query = $this->InteractiveDataProfile->GetProfileWithUser($email_input, $password_input);
+            $Email = $this->input->post('Email');
+            $Password = $this->input->post('Password');
+            $query = $this->InteractiveDataProfile->GetProfileWithUser($Email, $Password);
             if ($query->num_rows() == 1) {
                 foreach ($query->result() as $row) {
                     $email = $row->email;
@@ -42,13 +42,21 @@ class Login extends CI_Controller {
                     );
                     $this->session->set_userdata($userdata);
                 }
-                $this->load->view('timelineView');
+                $this->load->view('TimelineView');
             } else {
-                $error = 'Incorrect email or password!';
+                $query_checkemail = $this->InteractiveDataProfile->GetProfileWithUser_CheckExist($Email);
+                if ($query_checkemail->num_rows() == 1){
+                    $error = 'Incorrect password!';
+                    
+                } else {
+                    $error = 'Account does not exist. Please create a new account!';
+                }
+                
                 $this->index($error);
             }
         }
     }
+
 }
 
 /* End of file Login.php */
